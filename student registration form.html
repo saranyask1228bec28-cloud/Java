@@ -1,0 +1,175 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class StudentRegistrationForm extends JFrame {
+
+    JLabel title, subtitle;
+    JLabel firstName, lastName, email, dob, username, password, gender, course;
+    JTextField firstNameField, lastNameField, emailField;
+    JTextField dobField, usernameField;
+    JPasswordField passwordField;
+    JRadioButton male, female, others;
+    JComboBox<String> courseBox;
+    JButton registerButton;
+
+    public StudentRegistrationForm() {
+
+        // Frame settings
+        setTitle("Student Registration Form");
+        setSize(420, 500);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        // Main panel
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(255, 174, 0));
+        panel.setLayout(null);
+
+        // Title
+        title = new JLabel("Student Registration Form");
+        title.setFont(new Font("Arial", Font.BOLD, 20));
+        title.setBounds(20, 15, 300, 30);
+        panel.add(title);
+
+        // Subtitle
+        subtitle = new JLabel("Fill in this form to register");
+        subtitle.setFont(new Font("Arial", Font.PLAIN, 12));
+        subtitle.setBounds(20, 48, 250, 20);
+        panel.add(subtitle);
+
+        // First Name
+        firstName = new JLabel("First Name");
+        firstName.setBounds(20, 85, 100, 25);
+        panel.add(firstName);
+
+        firstNameField = new JTextField();
+        firstNameField.setBounds(115, 85, 130, 25);
+        firstNameField.setToolTipText("Enter your first name");
+        panel.add(firstNameField);
+
+        // Last Name
+        lastName = new JLabel("Last Name");
+        lastName.setBounds(20, 120, 100, 25);
+        panel.add(lastName);
+
+        lastNameField = new JTextField();
+        lastNameField.setBounds(115, 120, 130, 25);
+        panel.add(lastNameField);
+
+        // Email
+        email = new JLabel("E-mail");
+        email.setBounds(20, 155, 100, 25);
+        panel.add(email);
+
+        emailField = new JTextField();
+        emailField.setBounds(115, 155, 140, 25);
+        panel.add(emailField);
+
+        // Date of Birth
+        dob = new JLabel("Date of Birth");
+        dob.setBounds(20, 190, 100, 25);
+        panel.add(dob);
+
+        dobField = new JTextField("dd-mm-yyyy");
+        dobField.setBounds(115, 190, 110, 25);
+        panel.add(dobField);
+
+        // Username
+        username = new JLabel("Set Username");
+        username.setBounds(20, 225, 100, 25);
+        panel.add(username);
+
+        usernameField = new JTextField();
+        usernameField.setBounds(115, 225, 145, 25);
+        panel.add(usernameField);
+
+        // Password
+        password = new JLabel("Set Password");
+        password.setBounds(20, 260, 100, 25);
+        panel.add(password);
+
+        passwordField = new JPasswordField();
+        passwordField.setBounds(115, 260, 145, 25);
+        panel.add(passwordField);
+
+        // Gender
+        gender = new JLabel("Gender");
+        gender.setBounds(20, 295, 100, 25);
+        panel.add(gender);
+
+        male = new JRadioButton("Male");
+        male.setBounds(20, 320, 80, 20);
+        male.setBackground(new Color(255, 174, 0));
+
+        female = new JRadioButton("Female");
+        female.setBounds(20, 342, 80, 20);
+        female.setBackground(new Color(255, 174, 0));
+
+        others = new JRadioButton("Others");
+        others.setBounds(20, 364, 80, 20);
+        others.setBackground(new Color(255, 174, 0));
+
+        // Group radio buttons
+        ButtonGroup group = new ButtonGroup();
+        group.add(male);
+        group.add(female);
+        group.add(others);
+
+        panel.add(male);
+        panel.add(female);
+        panel.add(others);
+
+        // Course
+        course = new JLabel("Course");
+        course.setBounds(20, 395, 70, 25);
+        panel.add(course);
+
+        String[] courses = {
+            "Course",
+            "ECE",
+            "EEE",
+            "CSE",
+            "IT",
+            "MECH",
+            "CIVIL"
+        };
+
+        courseBox = new JComboBox<>(courses);
+        courseBox.setBounds(75, 395, 155, 25);
+        panel.add(courseBox);
+
+        // Register Button
+        registerButton = new JButton("Register");
+        registerButton.setBounds(20, 435, 80, 25);
+        panel.add(registerButton);
+
+        // Button action
+        registerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                String name = firstNameField.getText();
+                String emailText = emailField.getText();
+
+                if (name.isEmpty() || emailText.isEmpty()) {
+                    JOptionPane.showMessageDialog(
+                        StudentRegistrationForm.this,
+                        "Please fill all required fields!"
+                    );
+                } else {
+                    JOptionPane.showMessageDialog(
+                        StudentRegistrationForm.this,
+                        "Registration Successful!"
+                    );
+                }
+            }
+        });
+
+        add(panel);
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new StudentRegistrationForm();
+    }
+}
