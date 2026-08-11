@@ -1,0 +1,167 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class StudentRegistrationForm extends JFrame {
+
+    StudentRegistrationForm() {
+
+        setTitle("Student Registration Form");
+        setSize(320, 430);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        JPanel p = new JPanel();
+        p.setBackground(new Color(255, 174, 0));
+        p.setLayout(null);
+
+        // Title
+        JLabel title = new JLabel("Student Registration Form");
+        title.setFont(new Font("Arial", Font.BOLD, 16));
+        title.setBounds(18, 10, 250, 25);
+        p.add(title);
+
+        // Subtitle
+        JLabel sub = new JLabel("Fill in this form to register");
+        sub.setFont(new Font("Arial", Font.PLAIN, 11));
+        sub.setBounds(18, 38, 200, 20);
+        p.add(sub);
+
+        // First Name
+        JLabel l1 = new JLabel("First Name");
+        l1.setBounds(20, 78, 65, 20);
+        p.add(l1);
+
+        JTextField t1 = new JTextField();
+        t1.setBounds(85, 78, 130, 20);
+        t1.setToolTipText("Enter your first name");
+        p.add(t1);
+
+        // Last Name
+        JLabel l2 = new JLabel("Last Name");
+        l2.setBounds(20, 107, 65, 20);
+        p.add(l2);
+
+        JTextField t2 = new JTextField();
+        t2.setBounds(85, 107, 130, 20);
+        t2.setToolTipText("Enter your last name");
+        p.add(t2);
+
+        // E-mail
+        JLabel l3 = new JLabel("E-mail");
+        l3.setBounds(20, 136, 65, 20);
+        p.add(l3);
+
+        JTextField t3 = new JTextField();
+        t3.setBounds(85, 136, 110, 20);
+        t3.setToolTipText("Enter your e-mail");
+        p.add(t3);
+
+        // Date of Birth
+        JLabel l4 = new JLabel("Date of Birth");
+        l4.setBounds(20, 165, 70, 20);
+        p.add(l4);
+
+        JTextField t4 = new JTextField("dd-mm-yyyy");
+        t4.setBounds(85, 165, 105, 20);
+        p.add(t4);
+
+        // Username
+        JLabel l5 = new JLabel("Set Username");
+        l5.setBounds(20, 194, 80, 20);
+        p.add(l5);
+
+        JTextField t5 = new JTextField();
+        t5.setBounds(100, 194, 130, 20);
+        t5.setToolTipText("Set Username");
+        p.add(t5);
+
+        // Password
+        JLabel l6 = new JLabel("Set Password");
+        l6.setBounds(20, 223, 80, 20);
+        p.add(l6);
+
+        JPasswordField t6 = new JPasswordField();
+        t6.setBounds(100, 223, 130, 20);
+        t6.setToolTipText("Set password");
+        p.add(t6);
+
+        // Gender
+        JLabel gender = new JLabel("Gender");
+        gender.setBounds(20, 252, 60, 20);
+        p.add(gender);
+
+        JRadioButton male = new JRadioButton("Male");
+        male.setBounds(20, 273, 70, 20);
+        male.setBackground(new Color(255, 174, 0));
+
+        JRadioButton female = new JRadioButton("Female");
+        female.setBounds(20, 293, 80, 20);
+        female.setBackground(new Color(255, 174, 0));
+
+        JRadioButton others = new JRadioButton("Others");
+        others.setBounds(20, 313, 80, 20);
+        others.setBackground(new Color(255, 174, 0));
+
+        ButtonGroup bg = new ButtonGroup();
+        bg.add(male);
+        bg.add(female);
+        bg.add(others);
+
+        p.add(male);
+        p.add(female);
+        p.add(others);
+
+        // Course
+        JLabel l7 = new JLabel("Course");
+        l7.setBounds(20, 340, 50, 20);
+        p.add(l7);
+
+        String courses[] = {
+            "Course",
+            "ECE",
+            "CSE",
+            "EEE",
+            "MECH",
+            "CIVIL"
+        };
+
+        JComboBox<String> cb = new JComboBox<>(courses);
+        cb.setBounds(72, 340, 155, 20);
+        p.add(cb);
+
+        // Register Button
+        JButton button = new JButton("Register");
+        button.setBounds(20, 370, 65, 22);
+        p.add(button);
+
+        // Button action
+        button.addActionListener(e -> {
+
+            if (t1.getText().isEmpty() ||
+                t2.getText().isEmpty() ||
+                t3.getText().isEmpty() ||
+                t5.getText().isEmpty() ||
+                t6.getPassword().length == 0) {
+
+                JOptionPane.showMessageDialog(
+                    this,
+                    "Please fill all fields"
+                );
+
+            } else {
+
+                JOptionPane.showMessageDialog(
+                    this,
+                    "Registration Successful!"
+                );
+            }
+        });
+
+        add(p);
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new StudentRegistrationForm();
+    }
+}
